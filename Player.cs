@@ -58,5 +58,17 @@ public class Player : Area2D
 			x: Mathf.Clamp(Position.x, 0, _screenSize.x),
 			y: Mathf.Clamp(Position.y, 0, _screenSize.y)
 		);
+		if (velocity.x != 0)
+		{
+			animatedSprite.Animation = "walk";
+			animatedSprite.FlipV = false;
+			// See the note below about boolean assignment
+			animatedSprite.FlipH = velocity.x < 0;
+		}
+		else if (velocity.y != 0)
+		{
+			animatedSprite.Animation = "up";
+			animatedSprite.FlipV = velocity.y > 0;
+		}
 	}
 }
