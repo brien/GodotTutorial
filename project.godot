@@ -16,7 +16,7 @@ _global_script_class_icons={
 [application]
 
 config/name="GodotTurorial"
-run/main_scene="res://helloWorld.tscn"
+run/main_scene="res://Player.tscn"
 config/icon="res://icon.png"
 
 [display]
