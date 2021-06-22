@@ -7,6 +7,9 @@ public class Player : Area2D
 	// private int a = 2;
 	// private string b = "text";
 	
+	[Signal]
+	public delegate void Hit();
+	
 	public int Speed = 400; // How fast the player will move (pixels/sec).
 
 	private Vector2 _screenSize; // Size of the game window.
@@ -15,6 +18,14 @@ public class Player : Area2D
 	public override void _Ready()
 	{
 		_screenSize = GetViewport().Size;
+		Hide();
+	}
+	
+	public void Start(Vector2 pos)
+	{
+		Position = pos;
+		Show();
+		GetNode<CollisionShape2D>("CollisionShape2D").Disabled = false;
 	}
 
 	//  // Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -71,4 +82,12 @@ public class Player : Area2D
 			animatedSprite.FlipV = velocity.y > 0;
 		}
 	}
+}
+
+
+private void _on_Player_body_entered(object body)
+{
+	Hide(); // Player disappears after being hit.
+	EmitSignal("Hit");
+	GetNode<CollisionShape2D>("CollisionShape2D").SetDeferred("disabled", true);
 }
