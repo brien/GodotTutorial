@@ -23,7 +23,7 @@ public class HUD : CanvasLayer
         await ToSignal(messageTimer, "timeout");
 
         var messageLabel = GetNode<Label>("MessageLabel");
-        messageLabel.Text = "Dodge the\nCreeps!";
+        messageLabel.Text = "Shoot the\nCreeps!";
         messageLabel.Show();
 
         GetNode<Button>("StartButton").Show();
